@@ -8,3 +8,4 @@ services:
       DB_USER: postgres
       DB_PWD: postgres
       DB_PORT: 5432
+
