@@ -5,9 +5,8 @@ services:
     ports:
       - 80:8080
     environment:
-      DB_USER: postgres
-      DB_PWD: fnRUuqkdGC0KvUJozq6u
-      DB_PORT: 5432
-      DB_HOST: bia.cxq8wks8qvdp.us-east-1.rds.amazonaws.com
-      ConnectionStrings__DefaultConnection: "User ID=postgres;Password=fnRUuqkdGC0KvUJozq6u;Server=bia.cxq8wks8qvdp.us-east-1.rds.amazonaws.com;Port=5432;Database=bia; Pooling=true;"
+      ConnectionStrings__DefaultConnection: User ID=postgres;Password=emYiSFGDjoXMoVhfp4Cy;Server=bia.cxq8wks8qvdp.us-east-1.rds.amazonaws.com;Port=5432;Database=bia; Pooling=true;
       ASPNETCORE_URLS: http://+:8080
+      DB_USER: postgres
+      DB_PWD: postgres
+      DB_PORT: 5432
