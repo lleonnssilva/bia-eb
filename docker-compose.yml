@@ -4,11 +4,11 @@ services:
   server:
     environment:
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: User ID=postgres;Password=emYiSFGDjoXMoVhfp4Cy;Server=bia.cxq8wks8qvdp.us-east-1.rds.amazonaws.com;Port=5432;Database=bia; Pooling=true;
+      ConnectionStrings__DefaultConnection: User ID=postgres;Password=senha_rds;Server=host_rds;Port=5432;Database=bia; Pooling=true;
       DB_PORT: "5432"
       DB_PWD: postgres
       DB_USER: postgres
-    image: 211125447912.dkr.ecr.us-east-1.amazonaws.com/bia:5e1a71c
+    image: 211125447912.dkr.ecr.us-east-1.amazonaws.com/bia:13b67c2
     networks:
       default: null
     ports:
