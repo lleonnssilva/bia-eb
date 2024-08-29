@@ -1,5 +1,6 @@
 ﻿using BIA.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Xml;
 
 namespace BIA.Data
 {
@@ -20,6 +21,21 @@ namespace BIA.Data
             }
         }
         public DbSet<Tarefa> Tarefas { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Tarefa>(entity =>
+            {
+                entity.ToTable("Tarefas");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Titulo);
+                entity.Property(e => e.Importante);
+                entity.Property(e => e.Dia_atividade);
+                entity.Property(e => e.createdAt);
+                entity.Property(e => e.updatedAt);
+            });
+        }
     }
     
 

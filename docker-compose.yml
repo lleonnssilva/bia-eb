@@ -1,21 +1,32 @@
-name: bia-eb
+version: "3.4"
+
 services:
   server:
-    environment:
-      ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: User ID=postgres;Password=fnRUuqkdGC0KvUJozq6u;Server=bia.cxq8wks8qvdp.us-east-1.rds.amazonaws.com;Port=5432;Database=bia; Pooling=true;
-      DB_HOST: bia.cxq8wks8qvdp.us-east-1.rds.amazonaws.com
-      DB_PORT: "5432"
-      DB_PWD: fnRUuqkdGC0KvUJozq6u
-      DB_USER: postgres
-    image: 211125447912.dkr.ecr.us-east-1.amazonaws.com/bia:5ee3210
-    networks:
-      default: null
+    container_name: bia
     ports:
-      - mode: ingress
-        target: 8080
-        published: "80"
-        protocol: tcp
-networks:
-  default:
-    name: bia-eb_default
+      - 3001:8080
+    links:
+      - database
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=database;Port=5432;Database=bia; Pooling=true;
+      - ASPNETCORE_URLS=http://+:8080
+
+  database:
+     image: postgres:latest
+     container_name: database
+     environment:
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=postgres
+       - POSTGRES_DB=bia
+     ports:
+       - "5433:5432"
+     restart: always
+     volumes:
+       - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    
